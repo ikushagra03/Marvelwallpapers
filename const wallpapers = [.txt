@@ -1,0 +1,25 @@
+const wallpapers = [
+    { title: "Iron Man", src: "https://via.placeholder.com/300x200?text=Iron+Man" }, // Replace with real image URLs
+    { title: "Captain America", src: "https://via.placeholder.com/300x200?text=Captain+America" },
+    { title: "Thor", src: "https://via.placeholder.com/300x200?text=Thor" },
+    { title: "Black Widow", src: "https://via.placeholder.com/300x200?text=Black+Widow" },
+    { title: "Hulk", src: "https://via.placeholder.com/300x200?text=Hulk" },
+    { title: "Spider-Man", src: "https://via.placeholder.com/300x200?text=Spider-Man" },
+    // Add more as needed
+];
+
+const gallery = document.getElementById('gallery');
+const searchInput = document.getElementById('search');
+
+function displayWallpapers(filter = '') {
+    gallery.innerHTML = '';
+    wallpapers.filter(w => w.title.toLowerCase().includes(filter.toLowerCase())).forEach(w => {
+        const div = document.createElement('div');
+        div.className = 'wallpaper';
+        div.innerHTML = `<img src="${w.src}" alt="${w.title}"><h3>${w.title}</h3>`;
+        gallery.appendChild(div);
+    });
+}
+
+displayWallpapers();
+searchInput.addEventListener('input', (e) => displayWallpapers(e.target.value));
